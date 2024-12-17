@@ -1,0 +1,160 @@
+/* Modern color palette and base styles */
+:root {
+  --primary-color: #2a9d8f;
+  --secondary-color: #e76f51;
+  --background-color: #f8f9fa;
+  --border-color: #dee2e6;
+  --text-color: #264653;
+  --hover-color: #457b9d;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Game container styles */
+.game {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Board styles */
+.game-board {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.board-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Square button styles */
+.square {
+  background: white;
+  border: 2px solid var(--border-color);
+  border-radius: 0.5rem;
+  width: 5rem;
+  height: 5rem;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-color);
+}
+
+.square:hover {
+  border-color: var(--hover-color);
+  transform: translateY(-2px);
+}
+
+.square:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+/* Status message styles */
+.status {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+/* Game info styles */
+.game-info {
+  min-width: 200px;
+}
+
+.game-info ol {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.game-info button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: white;
+  border: 2px solid var(--border-color);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.game-info button:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Winner styles */
+.status:contains("Winner") {
+  color: var(--secondary-color);
+  font-size: 1.75rem;
+  animation: winner-announcement 0.5s ease;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .game {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .square {
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.5rem;
+  }
+
+  .game-info {
+    width: 100%;
+  }
+}
+
+/* Animations */
+@keyframes winner-announcement {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* X and O animations */
+.square:not(:empty) {
+  animation: appear 0.3s ease;
+}
+
+@keyframes appear {
+  0% { 
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
